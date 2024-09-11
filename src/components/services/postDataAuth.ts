@@ -25,7 +25,7 @@ const postDataAuth = createApi({
         };
       },
 
-      invalidatesTags: ["postDataAut"],
+      // invalidatesTags: ["postDataAut"],
     }),
   }),
 });

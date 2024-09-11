@@ -1,17 +1,17 @@
-import { useRef, useEffect, JSX } from "react";
-import styles from "./index.module.css";
+import React, { useRef, useEffect, KeyboardEvent } from "react";
 import { addTask } from "../redux/slices/taskSlice.js";
 import { useSelector, useDispatch } from "react-redux";
 import { addTaskInput } from "../redux/slices/addSlice.js";
 import { useCreateToDoMutation } from "../../apiRQuery.js";
+import styles from "./index.module.css";
 
-const TodoForm = ({ teachMeUseHoc }): JSX.Element => {
+const TodoForm: React.FC = ({ teachMeUseHoc }): JSX.Element => {
   const [createTask] = useCreateToDoMutation();
 
   const dispatch = useDispatch();
   const add = useSelector((state) => state.addSlice);
 
-  const handleChange = async (event) => {
+  const handleChange = async (event: KeyboardEvent<HTMLInputElement>) => {
     const newTask = { title: add };
     if (event.key === "Enter") {
       console.log(typeof add);
@@ -24,7 +24,7 @@ const TodoForm = ({ teachMeUseHoc }): JSX.Element => {
 
   const focusOnAddInput = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    focusOnAddInput.current.focus();
+    focusOnAddInput.current?.focus();
   }, []);
 
   return (
@@ -34,7 +34,7 @@ const TodoForm = ({ teachMeUseHoc }): JSX.Element => {
         placeholder="Enter new todo"
         value={add}
         onChange={(event) => dispatch(addTaskInput(event.target.value))}
-        onKeyDown={(e) => handleChange(e)}
+        onKeyDown={handleChange}
         ref={focusOnAddInput}
       />
     </div>

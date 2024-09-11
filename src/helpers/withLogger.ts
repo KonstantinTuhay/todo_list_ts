@@ -1,6 +1,6 @@
-import React from "react";
+import { JSX } from "react";
 
-const withLogger = (WrappedComponent) => {
+const withLogger = (WrappedComponent): JSX.Element => {
   return (props) => {
     const { note, text, value } = props;
     const teachMeUseHoc = () => {

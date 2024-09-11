@@ -1,11 +1,11 @@
-import { JSX } from "react";
+import React from "react";
 import TodoInput from "../../components/TodoInput";
 import TodoList from "../../components/TodoList";
 import Info from "../../components/InfoCircle";
 import withLogger from "../../helpers/withLogger";
 import "../../App.css";
 
-const AllTodo = (): JSX.Element => {
+const AllTodo: React.FC = (): JSX.Element => {
   const AddLogging = withLogger(TodoInput);
 
   return (
