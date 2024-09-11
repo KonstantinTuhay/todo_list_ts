@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import { useState, JSX } from "react";
 import { Modal, FloatButton } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
-const Info = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const Info = (): JSX.Element => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const showModal = () => {
+  const showModal = (): void => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
+  const handleOk = (): void => {
     setIsModalOpen(false);
   };
 
-  const handleCancel = () => {
+  const handleCancel = (): void => {
     setIsModalOpen(false);
   };
 
