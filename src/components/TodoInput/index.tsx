@@ -1,11 +1,11 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect, JSX } from "react";
 import styles from "./index.module.css";
 import { addTask } from "../redux/slices/taskSlice.js";
 import { useSelector, useDispatch } from "react-redux";
-import { addTaskInput } from "../redux/slices/addSlice";
+import { addTaskInput } from "../redux/slices/addSlice.js";
 import { useCreateToDoMutation } from "../../apiRQuery.js";
 
-const TodoForm = ({ teachMeUseHoc }) => {
+const TodoForm = ({ teachMeUseHoc }): JSX.Element => {
   const [createTask] = useCreateToDoMutation();
 
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const TodoForm = ({ teachMeUseHoc }) => {
     }
   };
 
-  const focusOnAddInput = useRef(null);
+  const focusOnAddInput = useRef<HTMLInputElement>(null);
   useEffect(() => {
     focusOnAddInput.current.focus();
   }, []);

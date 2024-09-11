@@ -1,5 +1,4 @@
-import React from "react";
-import styles from "./index.module.css";
+import { JSX } from "react";
 import withLogger from "../../helpers/withLogger";
 import DeleteTodoLogger from "../DeleteTodoLogger";
 import { RiAppleLine } from "react-icons/ri";
@@ -12,8 +11,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useDeleteToDoMutation } from "../../apiRQuery";
 import { useIsCompletedTaskMutation } from "../../apiRQuery";
 import { useIsUpdatedTaskMutation } from "../../apiRQuery";
+import styles from "./index.module.css";
 
-const Todo = ({ todo }) => {
+const Todo = ({ todo }): JSX.Element => {
   const DeleteLogging = withLogger(DeleteTodoLogger);
   const EditLogging = withLogger(EditTodoLogger);
   const [deleteTask] = useDeleteToDoMutation();
@@ -38,7 +38,7 @@ const Todo = ({ todo }) => {
     await isCompletedTask({ id, completedTask });
   };
 
-  const editTodo = (id, text) => {
+  const editTodo = (id: string, text: string) => {
     dispatch(editTask(id));
     dispatch(previousEditTask(text));
   };
