@@ -1,10 +1,10 @@
 import { ComponentType } from "react";
 
 type BaseProps = {
-  note: string;
-  text: string;
-  value: string;
-  teachMeUseHoc: () => void;
+  note?: string;
+  text?: string;
+  value?: string;
+  teachMeUseHoc?: () => void;
 };
 
 const withLogger = (
