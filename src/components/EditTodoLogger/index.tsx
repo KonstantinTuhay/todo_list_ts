@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 
-const EditTodoLogger = (props) => {
-  const focusOnEditInput = useRef(null);
+const EditTodoLogger: React.FC = (props): JSX.Element => {
+  const focusOnEditInput = useRef<HTMLInputElement>(null);
 
   const { id, teachMeUseHoc } = props;
 
   useEffect(() => {
-    focusOnEditInput.current.focus();
+    focusOnEditInput.current?.focus();
   }, []);
   return (
     <>

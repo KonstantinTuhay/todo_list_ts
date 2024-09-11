@@ -1,4 +1,4 @@
-import { JSX } from "react";
+import React from "react";
 import withLogger from "../../helpers/withLogger";
 import DeleteTodoLogger from "../DeleteTodoLogger";
 import { RiAppleLine } from "react-icons/ri";
@@ -13,7 +13,7 @@ import { useIsCompletedTaskMutation } from "../../apiRQuery";
 import { useIsUpdatedTaskMutation } from "../../apiRQuery";
 import styles from "./index.module.css";
 
-const Todo = ({ todo }): JSX.Element => {
+const Todo: React.FC = ({ todo }): JSX.Element => {
   const DeleteLogging = withLogger(DeleteTodoLogger);
   const EditLogging = withLogger(EditTodoLogger);
   const [deleteTask] = useDeleteToDoMutation();

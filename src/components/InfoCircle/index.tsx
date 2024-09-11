@@ -1,8 +1,8 @@
-import { useState, JSX } from "react";
+import React, { useState } from "react";
 import { Modal, FloatButton } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
-const Info = (): JSX.Element => {
+const Info: React.FC = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const showModal = (): void => {

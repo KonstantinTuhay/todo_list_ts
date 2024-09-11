@@ -1,7 +1,7 @@
 import React from "react";
 import { MdDeleteOutline } from "react-icons/md";
 
-const DeleteTodoLogger = (props) => {
+const DeleteTodoLogger: React.FC = (props): JSX.Element => {
   const { id, teachMeUseHoc } = props;
   return (
     <>

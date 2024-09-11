@@ -1,9 +1,9 @@
-import { JSX } from "react";
+import React from "react";
 import Todo from "../Todo/index.js";
 import styles from "./index.module.css";
 import { useGetToDosQuery } from "../../apiRQuery.js";
 
-const TodoList = (): JSX.Element => {
+const TodoList: React.FC = (): JSX.Element => {
   const { data: tasks, error, isLoading } = useGetToDosQuery();
 
   if (isLoading) {
