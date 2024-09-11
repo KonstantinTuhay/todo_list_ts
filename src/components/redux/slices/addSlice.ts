@@ -1,10 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+const initialState: string = "";
 
 const addSlice = createSlice({
   name: "tasks",
-  initialState: "",
+  initialState,
   reducers: {
-    addTaskInput: (state, action) => {
+    addTaskInput: (state, action: PayloadAction<string>) => {
       return (state = action.payload);
     },
   },

@@ -1,10 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+const initialState: null = null;
 
 const editSlices = createSlice({
   name: "tasks",
-  initialState: null,
+  initialState,
   reducers: {
-    editTask: (state, action) => {
+    editTask: (state, action: PayloadAction<null>) => {
       return (state = action.payload);
     },
   },
