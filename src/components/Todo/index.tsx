@@ -24,6 +24,8 @@ type Props = {
 const Todo = (props: Props): JSX.Element => {
   const { todo } = props;
 
+  //когда типизируешь логгер, выскакивают ошибки, и уже когда повторил много где такую же
+  // практически типизацию, они пропадают, кроме этого места
   const DeleteLogging = withLogger(DeleteTodoLogger);
   const EditLogging = withLogger(EditTodoLogger);
   const [deleteTask] = useDeleteToDoMutation();
