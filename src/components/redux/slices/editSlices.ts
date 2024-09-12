@@ -8,7 +8,7 @@ const editSlices = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    editTask: (state, action: PayloadAction<InitialState>) => {
+    editTask: (state, action: PayloadAction<InitialState>): string | null => {
       if (typeof state === "string") {
         return (state = action.payload);
       } else {

@@ -28,7 +28,10 @@ const taskSlice = createSlice({
     removeTask: (state, action: PayloadAction<string>) => {
       return state.filter((task) => task.id !== action.payload);
     },
-    editChange: (state, action: PayloadAction<string>) => {
+    editChange: (
+      state,
+      action: PayloadAction<{ id: string; previousEdit: string }>
+    ) => {
       const task = state.find((task) => task.id === action.payload.id);
       if (task) {
         task.text = action.payload.previousEdit;

@@ -1,6 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef, KeyboardEvent, JSX } from "react";
 
-const EditTodoLogger: React.FC = (props): JSX.Element => {
+type BasePropsEdit = {
+  id: string;
+  teachMeUseHoc: () => void;
+  handleChange: (
+    e: KeyboardEvent<HTMLInputElement>,
+    id: string,
+    teachMeUseHoc: () => void
+  ) => Promise<void>;
+};
+
+const EditTodoLogger = (props: BasePropsEdit): JSX.Element => {
   const focusOnEditInput = useRef<HTMLInputElement>(null);
 
   const { id, teachMeUseHoc } = props;

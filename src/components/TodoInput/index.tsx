@@ -1,15 +1,20 @@
 import React, { useRef, useEffect, KeyboardEvent } from "react";
 import { addTask } from "../redux/slices/taskSlice.js";
-import { useSelector, useDispatch } from "react-redux";
 import { addTaskInput } from "../redux/slices/addSlice.js";
 import { useCreateToDoMutation } from "../../apiRQuery.js";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import styles from "./index.module.css";
 
-const TodoForm: React.FC = ({ teachMeUseHoc }): JSX.Element => {
+type ForTeach = {
+  teachMeUseHoc: () => void;
+};
+
+const TodoForm = (props: ForTeach): JSX.Element => {
+  const { teachMeUseHoc } = props;
   const [createTask] = useCreateToDoMutation();
 
-  const dispatch = useDispatch();
-  const add = useSelector((state) => state.addSlice);
+  const dispatch = useAppDispatch();
+  const add = useAppSelector((state) => state.addSlice);
 
   const handleChange = async (event: KeyboardEvent<HTMLInputElement>) => {
     const newTask = { title: add };

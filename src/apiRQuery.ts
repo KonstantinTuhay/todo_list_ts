@@ -20,8 +20,6 @@ export const toDoApi = createApi({
         };
       },
       transformResponse: (response) => response,
-      // onSuccess: (data) => console.log("Запрос успешен!", data),
-      // onError: (error) => console.error("Произошла ошибка:", error),
       providesTags: ["Todos"],
     }),
     createToDo: builder.mutation({
@@ -45,7 +43,14 @@ export const toDoApi = createApi({
         };
       },
       invalidatesTags: ["Todos"],
-      transformResponse: (response) => response.data,
+      transformResponse: (response: {
+        data: {
+          id: string;
+          title: string;
+          user_id: number;
+          isCompleted: boolean;
+        };
+      }) => response.data,
       transformErrorResponse: (response) => response.status,
     }),
     isCompletedTask: builder.mutation({
@@ -65,8 +70,6 @@ export const toDoApi = createApi({
         headers,
       }),
       transformResponse: (response) => response,
-      // onSuccess: (data) => console.log("Запрос успешен!", data),
-      // onError: (error) => console.error("Произошла ошибка:", error),
       invalidatesTags: ["Todos"],
     }),
   }),
