@@ -4,7 +4,7 @@ import { useDeleteToDoMutation } from "../../apiRQuery";
 
 type DeleteProps = {
   id: string;
-  teachMeUseHoc: () => void;
+  teachMeUseHoc: any;
 };
 
 const DeleteTodoLogger = (props: DeleteProps): JSX.Element => {
@@ -12,17 +12,17 @@ const DeleteTodoLogger = (props: DeleteProps): JSX.Element => {
 
   const [deleteTask] = useDeleteToDoMutation();
 
-  const deleteTodo = async (id, teachMeUseHoc) => {
+  const deleteTodo = async (
+    id: string
+    // teachMeUseHoc: () => void
+  ): Promise<void> => {
     await deleteTask(id);
     teachMeUseHoc();
   };
 
   return (
     <>
-      <MdDeleteOutline
-        {...props}
-        onClick={() => deleteTodo(id, teachMeUseHoc)}
-      />
+      <MdDeleteOutline {...props} onClick={() => deleteTodo(id)} />
     </>
   );
 };

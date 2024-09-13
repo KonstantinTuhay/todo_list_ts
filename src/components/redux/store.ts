@@ -1,24 +1,25 @@
 import { configureStore } from "@reduxjs/toolkit";
 import tasksSlice from "./slices/taskSlice";
-import tasksReducer from "./reducers/taskReducer";
+// import tasksReducer from "./reducers/taskReducer";
 import editSlices from "./slices/editSlices";
-import editReducer from "./reducers/editReducer";
-import previousEditReducer from "./reducers/previousEditReducer";
+// import editReducer from "./reducers/editReducer";
+// import previousEditReducer from "./reducers/previousEditReducer";
+// import previousEditSlice from "./slices/previousEditSlice";
 import previousEditSlice from "./slices/previousEditSlice";
 import addSlice from "./slices/addSlice";
-import addReducer from "./reducers/addReducer";
+// import addReducer from "./reducers/addReducer";
 import { toDoApi } from "../../apiRQuery";
 
 export const store = configureStore({
   reducer: {
-    addReducer: addReducer,
+    // addReducer: addReducer,
     addSlice: addSlice,
     previousEditSlice: previousEditSlice,
-    previousEditReducer: previousEditReducer,
+    // previousEditReducer: previousEditReducer,
     editWithSlice: editSlices,
-    editReducer: editReducer,
+    // editReducer: editReducer,
     tasksSlice: tasksSlice,
-    tasksReducer: tasksReducer,
+    // tasksReducer: tasksReducer,
     [toDoApi.reducerPath]: toDoApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -1,10 +1,15 @@
-import { JSX, useEffect, useRef } from "react";
+import { KeyboardEvent, useEffect, useRef } from "react";
 import { useIsUpdatedTaskMutation } from "../../apiRQuery";
 import { previousEditTask } from "../redux/slices/previousEditSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { editTask } from "../redux/slices/editSlices";
 
-const EditTodoLogger = (props): JSX.Element => {
+type EditProps = {
+  id: string;
+  teachMeUseHoc: any;
+};
+
+const EditTodoLogger = (props: EditProps) => {
   const focusOnEditInput = useRef<HTMLInputElement>(null);
 
   const { id, teachMeUseHoc } = props;
@@ -23,7 +28,11 @@ const EditTodoLogger = (props): JSX.Element => {
     return <p>Loading...</p>;
   }
 
-  const handleChange = async (event, id, teachMeUseHoc) => {
+  const handleChange = async (
+    event: KeyboardEvent<HTMLInputElement>,
+    id: string
+    // teachMeUseHoc: () => void
+  ): Promise<void> => {
     if (event.key === "Enter") {
       teachMeUseHoc();
       const updatedTask = { title: previousEdit };
@@ -40,7 +49,7 @@ const EditTodoLogger = (props): JSX.Element => {
         onChange={(e) => {
           dispatch(previousEditTask(e.target.value));
         }}
-        onKeyDown={(e) => handleChange(e, id, teachMeUseHoc)}
+        onKeyDown={(e) => handleChange(e, id)}
       />
     </>
   );

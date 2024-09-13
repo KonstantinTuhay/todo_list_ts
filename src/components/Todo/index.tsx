@@ -78,13 +78,14 @@ const Todo = ({ todo }): JSX.Element => {
             className={styles.editImage}
             onClick={() => editTodo(todo.id, todo.title)}
           />
-          <DeleteLogging
-            className={styles.deleteImage}
-            id={todo.id}
-            text={todo.title}
-            note="Удалил таску:"
-            // deleteTodo={deleteTodo}
-          />
+          <div className={styles.deleteImage}>
+            <DeleteLogging
+              id={todo.id}
+              text={todo.title}
+              note="Удалил таску:"
+              // deleteTodo={deleteTodo}
+            />
+          </div>
 
           <MdDoneOutline
             className={styles.doneImage}
