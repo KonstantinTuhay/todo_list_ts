@@ -1,12 +1,21 @@
-import React, { useEffect, useRef } from "react";
+import { JSX, useEffect, useRef } from "react";
 import { useIsUpdatedTaskMutation } from "../../apiRQuery";
-import { useSelector, useDispatch } from "react-redux";
 import { previousEditTask } from "../redux/slices/previousEditSlice";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
+import { editTask } from "../redux/slices/editSlices";
 
-const EditTodoLogger = (props) => {
-  const previousEdit = useSelector((state) => state.previousEditSlice);
+const EditTodoLogger = (props): JSX.Element => {
+  const focusOnEditInput = useRef<HTMLInputElement>(null);
 
-  const dispatch = useDispatch();
+  const { id, teachMeUseHoc } = props;
+
+  useEffect(() => {
+    focusOnEditInput.current?.focus();
+  }, []);
+
+  const previousEdit = useAppSelector((state) => state.previousEditSlice);
+
+  const dispatch = useAppDispatch();
 
   const [isUpdatedTask, { isLoading }] = useIsUpdatedTaskMutation();
 
@@ -23,23 +32,15 @@ const EditTodoLogger = (props) => {
     }
   };
 
-  const focusOnEditInput = useRef(null);
-
-  const { id, teachMeUseHoc } = props;
-
-  useEffect(() => {
-    focusOnEditInput.current.focus();
-  }, []);
   return (
     <>
       <input
-        handleChange={handleChange}
         {...props}
         ref={focusOnEditInput}
         onChange={(e) => {
           dispatch(previousEditTask(e.target.value));
         }}
-        onKeyDown={(e) => props.handleChange(e, id, teachMeUseHoc)}
+        onKeyDown={(e) => handleChange(e, id, teachMeUseHoc)}
       />
     </>
   );

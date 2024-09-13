@@ -12,23 +12,26 @@ const taskSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    addTask: (state, action) => {
+    addTask: (state, action: PayloadAction<string>) => {
       state.push({
         id: crypto.randomUUID(),
         text: action.payload,
         isCompleted: false,
       });
     },
-    toggleTask: (state, action) => {
+    toggleTask: (state, action: PayloadAction<string>) => {
       const task = state.find((task) => task.id === action.payload);
       if (task) {
         task.isCompleted = !task.isCompleted;
       }
     },
-    removeTask: (state, action) => {
+    removeTask: (state, action: PayloadAction<string>) => {
       return state.filter((task) => task.id !== action.payload);
     },
-    editChange: (state, action) => {
+    editChange: (
+      state,
+      action: PayloadAction<{ id: string; previousEdit: string }>
+    ) => {
       const task = state.find((task) => task.id === action.payload.id);
       if (task) {
         task.text = action.payload.previousEdit;

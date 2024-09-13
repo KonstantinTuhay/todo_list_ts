@@ -1,4 +1,4 @@
-import React from "react";
+import { JSX } from "react";
 import styles from "./index.module.css";
 import withLogger from "../../helpers/withLogger";
 import DeleteTodoLogger from "../DeleteTodoLogger";
@@ -8,37 +8,37 @@ import EditTodoLogger from "../EditTodoLogger";
 import { CiEdit } from "react-icons/ci";
 import { editTask } from "../redux/slices/editSlices";
 import { previousEditTask } from "../redux/slices/previousEditSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { useDeleteToDoMutation } from "../../apiRQuery";
+// import { useDeleteToDoMutation } from "../../apiRQuery";
 import { useIsCompletedTaskMutation } from "../../apiRQuery";
 // import { useIsUpdatedTaskMutation } from "../../apiRQuery";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
-const Todo = ({ todo }) => {
+const Todo = ({ todo }): JSX.Element => {
   const DeleteLogging = withLogger(DeleteTodoLogger);
   const EditLogging = withLogger(EditTodoLogger);
-  const [deleteTask] = useDeleteToDoMutation();
+  // const [deleteTask] = useDeleteToDoMutation();
   const [isCompletedTask] = useIsCompletedTaskMutation();
   // const [isUpdatedTask, { isLoading }] = useIsUpdatedTaskMutation();
 
-  const edit = useSelector((state) => state.editWithSlice);
-  const previousEdit = useSelector((state) => state.previousEditSlice);
-  const dispatch = useDispatch();
+  const edit = useAppSelector((state) => state.editWithSlice);
+  const previousEdit = useAppSelector((state) => state.previousEditSlice);
+  const dispatch = useAppDispatch();
 
   // if (isLoading) {
   //   return <p>Loading...</p>;
   // }
 
-  const deleteTodo = async (id, teachMeUseHoc) => {
-    await deleteTask(id);
-    teachMeUseHoc();
-  };
+  // const deleteTodo = async (id, teachMeUseHoc) => {
+  //   await deleteTask(id);
+  //   teachMeUseHoc();
+  // };
 
-  const toggleTodo = async (id) => {
+  const toggleTodo = async (id: string) => {
     const completedTask = { ...todo, isCompleted: !todo.isCompleted };
     await isCompletedTask({ id, completedTask });
   };
 
-  const editTodo = (id, text) => {
+  const editTodo = (id: string, text: string) => {
     dispatch(editTask(id));
     dispatch(previousEditTask(text));
   };
@@ -83,7 +83,7 @@ const Todo = ({ todo }) => {
             id={todo.id}
             text={todo.title}
             note="Удалил таску:"
-            deleteTodo={deleteTodo}
+            // deleteTodo={deleteTodo}
           />
 
           <MdDoneOutline

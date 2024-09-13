@@ -1,5 +1,3 @@
-import React from "react";
-
 const withLogger = (WrappedComponent) => {
   return (props) => {
     const { note, text, value } = props;
