@@ -9,8 +9,7 @@ type ForTeach = {
   teachMeUseHoc: () => void;
 };
 
-const TodoForm = (props: ForTeach): JSX.Element => {
-  const { teachMeUseHoc } = props;
+const TodoForm = ({ teachMeUseHoc }: ForTeach): JSX.Element => {
   const [createTask] = useCreateToDoMutation();
 
   const dispatch = useAppDispatch();

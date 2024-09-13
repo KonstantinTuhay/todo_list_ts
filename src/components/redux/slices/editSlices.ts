@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type InitialState = string | null;
+export type InitialState = null | string;
 
 const initialState: InitialState = null;
 
@@ -8,8 +8,8 @@ const editSlices = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    editTask: (state, action: PayloadAction<InitialState>): string | null => {
-      if (typeof state === "string") {
+    editTask: (state, action: PayloadAction<InitialState>): InitialState => {
+      if (typeof action.payload === "string") {
         return (state = action.payload);
       } else {
         return state;

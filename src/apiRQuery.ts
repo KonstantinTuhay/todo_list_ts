@@ -4,6 +4,13 @@ const headers = {
   Authorization: `Bearer ${localStorage.getItem("token")}`,
 };
 
+interface Todo {
+  id: string;
+  title: string;
+  user_id: number;
+  isCompleted: boolean;
+}
+
 export const toDoApi = createApi({
   reducerPath: "toDoApi",
   baseQuery: fetchBaseQuery({
@@ -11,7 +18,7 @@ export const toDoApi = createApi({
   }),
   tagTypes: ["Todos"],
   endpoints: (builder) => ({
-    getToDos: builder.query({
+    getToDos: builder.query<Todo[], void>({
       query: () => {
         return {
           url: `/todos`,
