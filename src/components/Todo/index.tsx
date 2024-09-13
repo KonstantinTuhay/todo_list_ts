@@ -55,11 +55,9 @@ const Todo = ({ todo }: Props): JSX.Element => {
     dispatch(previousEditTask(text));
   };
 
-  const handleChange = async (
-    event: KeyboardEvent<HTMLInputElement>,
-    id: Id,
-    teachMeUseHoc: () => void
-  ): Promise<void> => {
+  const handleChange = async (event, id, teachMeUseHoc) => {
+    console.log("bebebebe");
+
     if (event.key === "Enter") {
       teachMeUseHoc();
       const updatedTask = { title: previousEdit };

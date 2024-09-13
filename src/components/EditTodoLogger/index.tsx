@@ -1,17 +1,8 @@
-import { useEffect, useRef, KeyboardEvent, JSX } from "react";
+import { useEffect, useRef, JSX } from "react";
 
-type BasePropsEdit = {
-  id: string;
-  teachMeUseHoc: () => void;
-  handleChange: (
-    e: KeyboardEvent<HTMLInputElement>,
-    id: string,
-    teachMeUseHoc: () => void
-  ) => Promise<void>;
-};
-
-const EditTodoLogger = (props: BasePropsEdit): JSX.Element => {
+const EditTodoLogger = (props): JSX.Element => {
   const focusOnEditInput = useRef<HTMLInputElement>(null);
+  console.log(`------`, props);
 
   const { id, teachMeUseHoc } = props;
 
