@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type InitialState = string;
+
+const initialState: InitialState = "";
+
 const addSlice = createSlice({
   name: "tasks",
-  initialState: "",
+  initialState,
   reducers: {
     addTaskInput: (state, action) => {
       return (state = action.payload);
