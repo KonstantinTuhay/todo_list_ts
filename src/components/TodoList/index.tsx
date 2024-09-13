@@ -1,5 +1,5 @@
 import React from "react";
-import Todo from "../Todo";
+import Todo from "../Todo/index.js";
 import styles from "./index.module.css";
 import { useGetToDosQuery } from "../../apiRQuery.js";
 

@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import styles from "./index.module.css";
 import { addTask } from "../redux/slices/taskSlice.js";
 import { useSelector, useDispatch } from "react-redux";
-import { addTaskInput } from "../redux/slices/addSlice";
+import { addTaskInput } from "../redux/slices/addSlice.js";
 import { useCreateToDoMutation } from "../../apiRQuery.js";
 
 const TodoForm = ({ teachMeUseHoc }) => {

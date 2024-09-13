@@ -11,22 +11,22 @@ import { previousEditTask } from "../redux/slices/previousEditSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useDeleteToDoMutation } from "../../apiRQuery";
 import { useIsCompletedTaskMutation } from "../../apiRQuery";
-import { useIsUpdatedTaskMutation } from "../../apiRQuery";
+// import { useIsUpdatedTaskMutation } from "../../apiRQuery";
 
 const Todo = ({ todo }) => {
   const DeleteLogging = withLogger(DeleteTodoLogger);
   const EditLogging = withLogger(EditTodoLogger);
   const [deleteTask] = useDeleteToDoMutation();
   const [isCompletedTask] = useIsCompletedTaskMutation();
-  const [isUpdatedTask, { isLoading }] = useIsUpdatedTaskMutation();
+  // const [isUpdatedTask, { isLoading }] = useIsUpdatedTaskMutation();
 
   const edit = useSelector((state) => state.editWithSlice);
   const previousEdit = useSelector((state) => state.previousEditSlice);
   const dispatch = useDispatch();
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  // if (isLoading) {
+  //   return <p>Loading...</p>;
+  // }
 
   const deleteTodo = async (id, teachMeUseHoc) => {
     await deleteTask(id);
@@ -43,27 +43,25 @@ const Todo = ({ todo }) => {
     dispatch(previousEditTask(text));
   };
 
-  const handleChange = async (event, id, teachMeUseHoc) => {
-    if (event.key === "Enter") {
-      teachMeUseHoc();
-      const updatedTask = { title: previousEdit };
-      await isUpdatedTask({ id, updatedTask });
-      dispatch(editTask(null));
-    }
-  };
+  // const handleChange = async (event, id, teachMeUseHoc) => {
+  //   if (event.key === "Enter") {
+  //     teachMeUseHoc();
+  //     const updatedTask = { title: previousEdit };
+  //     await isUpdatedTask({ id, updatedTask });
+  //     dispatch(editTask(null));
+  //   }
+  // };
 
   return (
     <>
       {edit === todo.id ? (
-        <div>
+        <div className={styles.inputForChange}>
           <EditLogging
-            handleChange={handleChange}
             id={todo.id}
-            className={styles.inputForChange}
             value={previousEdit}
-            onChange={(e) => {
-              dispatch(previousEditTask(e.target.value));
-            }}
+            // onChange={(e) => {
+            //   dispatch(previousEditTask(e.target.value));
+            // }}
             note="Изменил таску:"
           />
         </div>
