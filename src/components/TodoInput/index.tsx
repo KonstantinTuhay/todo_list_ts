@@ -1,17 +1,17 @@
-import React, { useRef, useEffect } from "react";
+import { JSX, useRef, useEffect, KeyboardEvent } from "react";
 import styles from "./index.module.css";
 import { addTask } from "../redux/slices/taskSlice.js";
-import { useSelector, useDispatch } from "react-redux";
 import { addTaskInput } from "../redux/slices/addSlice.js";
 import { useCreateToDoMutation } from "../../apiRQuery.js";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
-const TodoForm = ({ teachMeUseHoc }) => {
+const TodoInput = ({ teachMeUseHoc }): JSX.Element => {
   const [createTask] = useCreateToDoMutation();
 
-  const dispatch = useDispatch();
-  const add = useSelector((state) => state.addSlice);
+  const dispatch = useAppDispatch();
+  const add = useAppSelector((state) => state.addSlice);
 
-  const handleChange = async (event) => {
+  const handleChange = async (event: KeyboardEvent<HTMLInputElement>) => {
     const newTask = { title: add };
     if (event.key === "Enter") {
       console.log(typeof add);
@@ -22,9 +22,9 @@ const TodoForm = ({ teachMeUseHoc }) => {
     }
   };
 
-  const focusOnAddInput = useRef(null);
+  const focusOnAddInput = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    focusOnAddInput.current.focus();
+    focusOnAddInput.current?.focus();
   }, []);
 
   return (
@@ -41,4 +41,4 @@ const TodoForm = ({ teachMeUseHoc }) => {
   );
 };
 
-export default TodoForm;
+export default TodoInput;
