@@ -1,10 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type InitialState = [];
+export type InitialState = {
+  id: string;
+  text: string;
+  isCompleted: boolean;
+};
+
+const initialState: InitialState[] = [];
 
 const taskSlice = createSlice({
   name: "tasks",
-  initialState: [],
+  initialState,
   reducers: {
     addTask: (state, action) => {
       state.push({
