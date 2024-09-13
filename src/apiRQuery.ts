@@ -4,6 +4,13 @@ const headers = {
   Authorization: `Bearer ${localStorage.getItem("token")}`,
 };
 
+type ToDo = {
+  id: string;
+  title: string;
+  user_id: number;
+  isCompleted: boolean;
+};
+
 export const toDoApi = createApi({
   reducerPath: "toDoApi",
   baseQuery: fetchBaseQuery({
@@ -11,7 +18,7 @@ export const toDoApi = createApi({
   }),
   tagTypes: ["Todos"],
   endpoints: (builder) => ({
-    getToDos: builder.query({
+    getToDos: builder.query<ToDo[], void>({
       query: () => {
         return {
           url: `/todos`,
@@ -20,8 +27,8 @@ export const toDoApi = createApi({
         };
       },
       transformResponse: (response) => response,
-      onSuccess: (data) => console.log("Запрос успешен!", data),
-      onError: (error) => console.error("Произошла ошибка:", error),
+      // onSuccess: (data) => console.log("Запрос успешен!", data),
+      // onError: (error) => console.error("Произошла ошибка:", error),
       providesTags: ["Todos"],
     }),
     createToDo: builder.mutation({
@@ -45,8 +52,8 @@ export const toDoApi = createApi({
         };
       },
       invalidatesTags: ["Todos"],
-      transformResponse: (response, meta, arg) => response.data,
-      transformErrorResponse: (response, meta, arg) => response.status,
+      transformResponse: (response) => response.data,
+      transformErrorResponse: (response) => response.status,
     }),
     isCompletedTask: builder.mutation({
       query: ({ id, completedTask }) => ({
@@ -65,8 +72,8 @@ export const toDoApi = createApi({
         headers,
       }),
       transformResponse: (response) => response,
-      onSuccess: (data) => console.log("Запрос успешен!", data),
-      onError: (error) => console.error("Произошла ошибка:", error),
+      // onSuccess: (data) => console.log("Запрос успешен!", data),
+      // onError: (error) => console.error("Произошла ошибка:", error),
       invalidatesTags: ["Todos"],
     }),
   }),

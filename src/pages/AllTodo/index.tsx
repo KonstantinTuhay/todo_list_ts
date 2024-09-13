@@ -1,11 +1,11 @@
-import React from "react";
+import { JSX } from "react";
 import TodoInput from "../../components/TodoInput";
 import TodoList from "../../components/TodoList";
 import Info from "../../components/InfoCircle";
 import withLogger from "../../helpers/withLogger";
 import "../../App.css";
 
-function AllTodo() {
+const AllTodo = (): JSX.Element => {
   const AddLogging = withLogger(TodoInput);
 
   return (
@@ -19,6 +19,6 @@ function AllTodo() {
       <TodoList />
     </div>
   );
-}
+};
 
 export default AllTodo;
