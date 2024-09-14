@@ -4,12 +4,12 @@ import { previousEditTask } from "../redux/slices/previousEditSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { editTask } from "../redux/slices/editSlices";
 
-type EditProps = {
+interface TodoInputProps {
   id: string;
-  teachMeUseHoc: any;
-};
+  teachMeUseHoc: () => void;
+}
 
-const EditTodoLogger = (props: EditProps) => {
+const EditTodoLogger: React.FC<TodoInputProps> = (props) => {
   const focusOnEditInput = useRef<HTMLInputElement>(null);
 
   const { id, teachMeUseHoc } = props;
@@ -31,7 +31,6 @@ const EditTodoLogger = (props: EditProps) => {
   const handleChange = async (
     event: KeyboardEvent<HTMLInputElement>,
     id: string
-    // teachMeUseHoc: () => void
   ): Promise<void> => {
     if (event.key === "Enter") {
       teachMeUseHoc();

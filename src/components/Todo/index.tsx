@@ -16,22 +16,11 @@ import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 const Todo = ({ todo }): JSX.Element => {
   const DeleteLogging = withLogger(DeleteTodoLogger);
   const EditLogging = withLogger(EditTodoLogger);
-  // const [deleteTask] = useDeleteToDoMutation();
   const [isCompletedTask] = useIsCompletedTaskMutation();
-  // const [isUpdatedTask, { isLoading }] = useIsUpdatedTaskMutation();
 
   const edit = useAppSelector((state) => state.editWithSlice);
   const previousEdit = useAppSelector((state) => state.previousEditSlice);
   const dispatch = useAppDispatch();
-
-  // if (isLoading) {
-  //   return <p>Loading...</p>;
-  // }
-
-  // const deleteTodo = async (id, teachMeUseHoc) => {
-  //   await deleteTask(id);
-  //   teachMeUseHoc();
-  // };
 
   const toggleTodo = async (id: string) => {
     const completedTask = { ...todo, isCompleted: !todo.isCompleted };
@@ -43,15 +32,6 @@ const Todo = ({ todo }): JSX.Element => {
     dispatch(previousEditTask(text));
   };
 
-  // const handleChange = async (event, id, teachMeUseHoc) => {
-  //   if (event.key === "Enter") {
-  //     teachMeUseHoc();
-  //     const updatedTask = { title: previousEdit };
-  //     await isUpdatedTask({ id, updatedTask });
-  //     dispatch(editTask(null));
-  //   }
-  // };
-
   return (
     <>
       {edit === todo.id ? (
@@ -59,9 +39,6 @@ const Todo = ({ todo }): JSX.Element => {
           <EditLogging
             id={todo.id}
             value={previousEdit}
-            // onChange={(e) => {
-            //   dispatch(previousEditTask(e.target.value));
-            // }}
             note="Изменил таску:"
           />
         </div>
@@ -83,7 +60,6 @@ const Todo = ({ todo }): JSX.Element => {
               id={todo.id}
               text={todo.title}
               note="Удалил таску:"
-              // deleteTodo={deleteTodo}
             />
           </div>
 
