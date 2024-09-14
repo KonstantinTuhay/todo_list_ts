@@ -21,8 +21,6 @@ type OneTodo = {
 };
 
 const Todo = ({ todo }: OneTodo): JSX.Element => {
-  console.log(todo);
-
   const DeleteLogging = withLogger(DeleteTodoLogger);
   const EditLogging = withLogger(EditTodoLogger);
   const [isCompletedTask] = useIsCompletedTaskMutation();

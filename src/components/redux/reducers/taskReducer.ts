@@ -18,7 +18,6 @@ const taskReducer = createReducer(initialState, (builder) => {
     })
     .addCase(toggleTask, (state, action) => {
       const task = state.find((task) => task.id === action.payload);
-      console.log(task);
 
       if (task) {
         task.isCompleted = !task.isCompleted;

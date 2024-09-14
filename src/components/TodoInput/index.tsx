@@ -18,7 +18,6 @@ const TodoInput: React.FC<TodoInputProps> = ({ teachMeUseHoc }) => {
   const handleChange = async (event: KeyboardEvent<HTMLInputElement>) => {
     const newTask = { title: add };
     if (event.key === "Enter") {
-      console.log(typeof add);
       teachMeUseHoc();
       dispatch(addTask(add));
       await createTask(newTask);

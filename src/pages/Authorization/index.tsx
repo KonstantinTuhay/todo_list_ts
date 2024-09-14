@@ -18,7 +18,6 @@ const Authorization = () => {
   const onSubmit = async (dataUser) => {
     try {
       const response = await api.post("/auth/login", dataUser);
-      console.log(response);
 
       localStorage.setItem("token", response.data.token);
       navigate("/todo");

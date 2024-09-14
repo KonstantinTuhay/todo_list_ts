@@ -5,7 +5,6 @@ import { useGetToDosQuery } from "../../apiRQuery.js";
 
 const TodoList = (): JSX.Element => {
   const { data, error, isLoading } = useGetToDosQuery();
-  console.log(data);
 
   if (isLoading) {
     return <p>Loading...</p>;

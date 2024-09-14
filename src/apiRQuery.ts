@@ -40,7 +40,6 @@ export const toDoApi = createApi({
     }),
     createToDo: builder.mutation({
       query: (body) => {
-        console.log(body);
         return {
           url: `/todos`,
           method: "POST",
