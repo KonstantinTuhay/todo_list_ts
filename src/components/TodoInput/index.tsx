@@ -1,11 +1,15 @@
-import { JSX, useRef, useEffect, KeyboardEvent } from "react";
+import { useRef, useEffect, KeyboardEvent } from "react";
 import styles from "./index.module.css";
 import { addTask } from "../redux/slices/taskSlice.ts";
 import { addTaskInput } from "../redux/slices/addSlice.ts";
 import { useCreateToDoMutation } from "../../apiRQuery.ts";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks.ts";
 
-const TodoInput = ({ teachMeUseHoc }: any): JSX.Element => {
+interface TodoInputProps {
+  teachMeUseHoc: () => void;
+}
+
+const TodoInput: React.FC<TodoInputProps> = ({ teachMeUseHoc }) => {
   const [createTask] = useCreateToDoMutation();
 
   const dispatch = useAppDispatch();
