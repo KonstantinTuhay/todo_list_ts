@@ -1,4 +1,3 @@
-// hooks/hooks.ts
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 

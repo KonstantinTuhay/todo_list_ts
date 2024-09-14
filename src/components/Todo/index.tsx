@@ -20,11 +20,11 @@ type OneTodo = {
   };
 };
 
+
 const Todo = ({ todo }: OneTodo): JSX.Element => {
   const DeleteLogging = withLogger(DeleteTodoLogger);
   const EditLogging = withLogger(EditTodoLogger);
   const [isCompletedTask] = useIsCompletedTaskMutation();
-
   const edit = useAppSelector((state) => state.editWithSlice);
   const previousEdit = useAppSelector((state) => state.previousEditSlice);
   const dispatch = useAppDispatch();

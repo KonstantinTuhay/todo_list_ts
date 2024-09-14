@@ -4,6 +4,7 @@ const headers = {
   Authorization: `Bearer ${localStorage.getItem("token")}`,
 };
 
+
 export type ToDo = {
   id: string;
   title: string;
@@ -19,6 +20,7 @@ type Data = {
     isCompleted: boolean;
   };
 };
+
 
 export const toDoApi = createApi({
   reducerPath: "toDoApi",
