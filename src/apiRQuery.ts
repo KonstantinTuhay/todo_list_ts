@@ -5,10 +5,10 @@ const headers = {
 };
 
 type ToDo = {
-  id: string;
-  title: string;
-  user_id: number;
-  isCompleted: boolean;
+  id?: string;
+  title?: string;
+  user_id?: number;
+  isCompleted?: boolean;
 };
 
 export const toDoApi = createApi({
@@ -72,8 +72,6 @@ export const toDoApi = createApi({
         headers,
       }),
       transformResponse: (response) => response,
-      // onSuccess: (data) => console.log("Запрос успешен!", data),
-      // onError: (error) => console.error("Произошла ошибка:", error),
       invalidatesTags: ["Todos"],
     }),
   }),

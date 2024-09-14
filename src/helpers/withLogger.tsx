@@ -2,7 +2,7 @@ import { JSX, ComponentType } from "react";
 
 type WithLoggerProps = {
   id?: string;
-  note: string;
+  note?: string;
   text?: string;
   value?: string;
 };

@@ -40,6 +40,9 @@ const Todo = ({ todo }): JSX.Element => {
             id={todo.id}
             value={previousEdit}
             note="Изменил таску:"
+            teachMeUseHoc={function (): void {
+              throw new Error("Function not implemented.");
+            }}
           />
         </div>
       ) : (
@@ -60,6 +63,9 @@ const Todo = ({ todo }): JSX.Element => {
               id={todo.id}
               text={todo.title}
               note="Удалил таску:"
+              teachMeUseHoc={function (): void {
+                throw new Error("Function not implemented.");
+              }}
             />
           </div>
 

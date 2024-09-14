@@ -6,6 +6,7 @@ import { useCreateToDoMutation } from "../../apiRQuery.ts";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks.ts";
 
 interface TodoInputProps {
+  // note: string;
   teachMeUseHoc: () => void;
 }
 

@@ -7,6 +7,8 @@ import { editTask } from "../redux/slices/editSlices";
 interface TodoInputProps {
   id: string;
   teachMeUseHoc: () => void;
+  value: string;
+  note: string;
 }
 
 const EditTodoLogger: React.FC<TodoInputProps> = (props) => {
@@ -36,7 +38,7 @@ const EditTodoLogger: React.FC<TodoInputProps> = (props) => {
       teachMeUseHoc();
       const updatedTask = { title: previousEdit };
       await isUpdatedTask({ id, updatedTask });
-      dispatch(editTask(null));
+      dispatch(editTask(""));
     }
   };
 
