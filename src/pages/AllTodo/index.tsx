@@ -14,7 +14,12 @@ const AllTodo = (): JSX.Element => {
         <h1>Your Todo App</h1>
         <Info />
       </div>
-      <AddLogging note="Добавил таску:" />
+      <AddLogging
+        note="Добавил таску:"
+        teachMeUseHoc={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
 
       <TodoList />
     </div>

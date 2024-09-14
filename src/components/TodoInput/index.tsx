@@ -1,15 +1,15 @@
-import { useRef, useEffect, KeyboardEvent, JSX } from "react";
-import { addTask } from "../redux/slices/taskSlice.js";
-import { addTaskInput } from "../redux/slices/addSlice.js";
-import { useCreateToDoMutation } from "../../apiRQuery.js";
-import { useAppDispatch, useAppSelector } from "../hooks/hooks";
+import { useRef, useEffect, KeyboardEvent } from "react";
 import styles from "./index.module.css";
+import { addTask } from "../redux/slices/taskSlice.ts";
+import { addTaskInput } from "../redux/slices/addSlice.ts";
+import { useCreateToDoMutation } from "../../apiRQuery.ts";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks.ts";
 
-type ForTeach = {
+interface TodoInputProps {
   teachMeUseHoc: () => void;
-};
+}
 
-const TodoForm = ({ teachMeUseHoc }: ForTeach): JSX.Element => {
+const TodoInput: React.FC<TodoInputProps> = ({ teachMeUseHoc }) => {
   const [createTask] = useCreateToDoMutation();
 
   const dispatch = useAppDispatch();
@@ -18,7 +18,6 @@ const TodoForm = ({ teachMeUseHoc }: ForTeach): JSX.Element => {
   const handleChange = async (event: KeyboardEvent<HTMLInputElement>) => {
     const newTask = { title: add };
     if (event.key === "Enter") {
-      console.log(typeof add);
       teachMeUseHoc();
       dispatch(addTask(add));
       await createTask(newTask);
@@ -38,11 +37,11 @@ const TodoForm = ({ teachMeUseHoc }: ForTeach): JSX.Element => {
         placeholder="Enter new todo"
         value={add}
         onChange={(event) => dispatch(addTaskInput(event.target.value))}
-        onKeyDown={handleChange}
+        onKeyDown={(e) => handleChange(e)}
         ref={focusOnAddInput}
       />
     </div>
   );
 };
 
-export default TodoForm;
+export default TodoInput;

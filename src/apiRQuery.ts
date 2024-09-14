@@ -4,12 +4,23 @@ const headers = {
   Authorization: `Bearer ${localStorage.getItem("token")}`,
 };
 
-interface Todo {
+
+export type ToDo = {
   id: string;
   title: string;
   user_id: number;
   isCompleted: boolean;
-}
+};
+
+type Data = {
+  data: {
+    id: string;
+    title: string;
+    user_id: number;
+    isCompleted: boolean;
+  };
+};
+
 
 export const toDoApi = createApi({
   reducerPath: "toDoApi",
@@ -18,7 +29,7 @@ export const toDoApi = createApi({
   }),
   tagTypes: ["Todos"],
   endpoints: (builder) => ({
-    getToDos: builder.query<Todo[], void>({
+    getToDos: builder.query<ToDo[], void>({
       query: () => {
         return {
           url: `/todos`,
@@ -26,12 +37,11 @@ export const toDoApi = createApi({
           headers,
         };
       },
-      transformResponse: (response) => response,
+      transformResponse: (response: ToDo[]) => response,
       providesTags: ["Todos"],
     }),
     createToDo: builder.mutation({
       query: (body) => {
-        console.log(body);
         return {
           url: `/todos`,
           method: "POST",
@@ -42,7 +52,7 @@ export const toDoApi = createApi({
       invalidatesTags: ["Todos"],
     }),
     deleteToDo: builder.mutation({
-      query: (id) => {
+      query: (id: string) => {
         return {
           url: `/todos/${id}`,
           method: "DELETE",
@@ -50,14 +60,7 @@ export const toDoApi = createApi({
         };
       },
       invalidatesTags: ["Todos"],
-      transformResponse: (response: {
-        data: {
-          id: string;
-          title: string;
-          user_id: number;
-          isCompleted: boolean;
-        };
-      }) => response.data,
+      transformResponse: (response: Data) => response.data,
       transformErrorResponse: (response) => response.status,
     }),
     isCompletedTask: builder.mutation({

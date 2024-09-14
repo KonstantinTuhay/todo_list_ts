@@ -3,17 +3,17 @@ import { Modal, FloatButton } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
 const Info = (): JSX.Element => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = (): void => {
+  const showModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = (): void => {
+  const handleOk = () => {
     setIsModalOpen(false);
   };
 
-  const handleCancel = (): void => {
+  const handleCancel = () => {
     setIsModalOpen(false);
   };
 

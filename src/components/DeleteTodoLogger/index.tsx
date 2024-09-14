@@ -1,22 +1,25 @@
 import { JSX } from "react";
 import { MdDeleteOutline } from "react-icons/md";
+import { useDeleteToDoMutation } from "../../apiRQuery";
 
-type BasePropsDelete = {
+interface TodoInputProps {
   id: string;
   teachMeUseHoc: () => void;
-  deleteTodo: (id: string, teachMeUseHoc: () => void) => void;
-  text: string;
-  note: string;
-};
+}
 
-const DeleteTodoLogger = (props: BasePropsDelete): JSX.Element => {
+const DeleteTodoLogger: React.FC<TodoInputProps> = (props): JSX.Element => {
   const { id, teachMeUseHoc } = props;
+
+  const [deleteTask] = useDeleteToDoMutation();
+
+  const deleteTodo = async (id: string): Promise<void> => {
+    await deleteTask(id);
+    teachMeUseHoc();
+  };
+
   return (
     <>
-      <MdDeleteOutline
-        {...props}
-        onClick={() => props.deleteTodo(id, teachMeUseHoc)}
-      />
+      <MdDeleteOutline {...props} onClick={() => deleteTodo(id)} />
     </>
   );
 };
