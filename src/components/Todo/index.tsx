@@ -8,12 +8,21 @@ import EditTodoLogger from "../EditTodoLogger";
 import { CiEdit } from "react-icons/ci";
 import { editTask } from "../redux/slices/editSlices";
 import { previousEditTask } from "../redux/slices/previousEditSlice";
-// import { useDeleteToDoMutation } from "../../apiRQuery";
 import { useIsCompletedTaskMutation } from "../../apiRQuery";
-// import { useIsUpdatedTaskMutation } from "../../apiRQuery";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
-const Todo = ({ todo }): JSX.Element => {
+type OneTodo = {
+  todo: {
+    id: string;
+    title: string;
+    user_id: number;
+    isCompleted: boolean;
+  };
+};
+
+const Todo = ({ todo }: OneTodo): JSX.Element => {
+  console.log(todo);
+
   const DeleteLogging = withLogger(DeleteTodoLogger);
   const EditLogging = withLogger(EditTodoLogger);
   const [isCompletedTask] = useIsCompletedTaskMutation();

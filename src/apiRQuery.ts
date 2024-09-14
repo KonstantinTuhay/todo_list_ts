@@ -4,11 +4,20 @@ const headers = {
   Authorization: `Bearer ${localStorage.getItem("token")}`,
 };
 
-type ToDo = {
-  id?: string;
-  title?: string;
-  user_id?: number;
-  isCompleted?: boolean;
+export type ToDo = {
+  id: string;
+  title: string;
+  user_id: number;
+  isCompleted: boolean;
+};
+
+type Data = {
+  data: {
+    id: string;
+    title: string;
+    user_id: number;
+    isCompleted: boolean;
+  };
 };
 
 export const toDoApi = createApi({
@@ -26,9 +35,7 @@ export const toDoApi = createApi({
           headers,
         };
       },
-      transformResponse: (response) => response,
-      // onSuccess: (data) => console.log("Запрос успешен!", data),
-      // onError: (error) => console.error("Произошла ошибка:", error),
+      transformResponse: (response: ToDo[]) => response,
       providesTags: ["Todos"],
     }),
     createToDo: builder.mutation({
@@ -44,7 +51,7 @@ export const toDoApi = createApi({
       invalidatesTags: ["Todos"],
     }),
     deleteToDo: builder.mutation({
-      query: (id) => {
+      query: (id: string) => {
         return {
           url: `/todos/${id}`,
           method: "DELETE",
@@ -52,7 +59,7 @@ export const toDoApi = createApi({
         };
       },
       invalidatesTags: ["Todos"],
-      transformResponse: (response) => response.data,
+      transformResponse: (response: Data) => response.data,
       transformErrorResponse: (response) => response.status,
     }),
     isCompletedTask: builder.mutation({
